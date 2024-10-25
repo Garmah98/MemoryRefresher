@@ -7,7 +7,7 @@ export default function Header() {
 		<header className='p-3 w-full bg-first flex justify-between'>
 			<h1 className='text-3xl text-third'>MemoryRefresher</h1>
 			<Button className='w-32' onClick={createCard}>
-				Create Card 
+				Create Card
 			</Button>
 		</header>
 	);
