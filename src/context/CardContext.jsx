@@ -55,7 +55,7 @@ export default function CardContextProvider({ children }) {
 
 	const [cardState, cardDispatch] = useReducer(cardReducer, {
 		items: cards,
-		selectedItem: '',
+		selectedItem: [],
 	});
 
 	useEffect(() => {

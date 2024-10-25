@@ -20,6 +20,8 @@ export default function CardModal() {
 		removeCard();
 	}
 
+
+
 	return (
 		<Modal
 			state='card'

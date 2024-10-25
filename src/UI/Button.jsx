@@ -4,7 +4,7 @@ export default function Button({ children, className, textOnly, ...props }) {
 	stylingClasses += className;
 	if (textOnly) {
 		stylingClasses =
-			'p-2 text-first text-lg font-semibold border border-third rounded-md shadow-md ';
+			'm-1 p-2 text-first text-lg font-semibold border border-third rounded-md shadow-md ';
 		stylingClasses += className;
 	}
 	return (
