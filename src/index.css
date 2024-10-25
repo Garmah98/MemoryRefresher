@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: #333;
+	margin: 0;
+	min-width: 320px;
+	min-height: 100vh;
+}
+pre {
+	background: #eee;
+	padding: 1rem;
+	overflow: auto;
+	border-radius: 3px;
+}
+pre code {
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
+}
