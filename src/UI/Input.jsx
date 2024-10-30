@@ -36,6 +36,7 @@ export default function Input({
 				type='text'
 				id={id}
 				name={id}
+				maxLength='86'
 			/>
 		);
 	}
