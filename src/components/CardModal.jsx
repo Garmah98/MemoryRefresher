@@ -27,7 +27,7 @@ export default function CardModal() {
 			onClose={hideModal}
 		>
 			<div className='w-full p-2'>
-				<h2 className='text-3xl'>{selectedItem.name}</h2>
+				<h2 className='text-3xl break-words'>{selectedItem.name}</h2>
 				<p className='text-xl text-stone-300'>{selectedItem.language}</p>
 				<pre>
 					<code className={`language-${selectedItem.language}`}>

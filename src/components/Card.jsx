@@ -10,13 +10,13 @@ export default function Card({ title, language, id }) {
 		handleSelectItem(id);
 	}
 	return (
-		<div className='m-2 h-32 shadow-2xl rounded-lg bg-gradient-to-tr from-fourth to-third'>
+		<div className='m-2 h-32 md:h-64 lg:h-44 shadow-2xl rounded-lg bg-gradient-to-tr from-fourth to-third'>
 			<button
 				onClick={() => handleButton()}
-				className='break-all w-full h-full p-2 rounded-lg'
+				className='relative break-all w-full h-full p-2 rounded-lg'
 			>
 				<h2 className='text-2xl'>{title}</h2>
-				<p className='text-stone-800 text-xl'>{language}</p>
+				<p className='text-stone-800 absolute right-2 bottom-2 text-xl'>{language}</p>
 			</button>
 		</div>
 	);
