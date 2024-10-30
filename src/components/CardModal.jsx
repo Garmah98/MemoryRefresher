@@ -7,18 +7,16 @@ import 'prismjs/components/prism-jsx';
 import 'prismjs/components/prism-javascript';
 import Modal from './Modal';
 import Button from '../UI/Button';
+import HoldButton from '../UI/HoldButton';
 
 export default function CardModal() {
-	const { removeCard, selectedItem } = useContext(CardContext);
+	const { selectedItem } = useContext(CardContext);
 	const { hideModal } = useContext(ProgressContext);
 
 	useEffect(() => {
 		Prism.highlightAll();
 	});
-	function handleRemoval() {
-		hideModal();
-		removeCard();
-	}
+
 
 	return (
 		<Modal
@@ -35,9 +33,9 @@ export default function CardModal() {
 					</code>
 				</pre>
 				<div className='flex justify-evenly'>
-					<Button onClick={handleRemoval} textOnly className='w-1/4'>
-						Remove
-					</Button>
+					<HoldButton className='w-1/4'>
+						Hold to Remove
+					</HoldButton>
 					<Button onClick={hideModal} className='w-1/4'>
 						Close
 					</Button>
