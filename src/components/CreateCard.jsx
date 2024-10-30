@@ -24,7 +24,7 @@ export default function CreateCard() {
 	return (
 		<Modal
 			state='create'
-			className='bg-gradient-to-tr from-fourth from-25% to-third '
+			className='w-full md:w-2/3 bg-gradient-to-tr from-fourth from-25% to-third '
 			onClose={handleClose}
 		>
 			<form className='flex flex-col p-2' onSubmit={handleSubmit(onSubmit)}>
