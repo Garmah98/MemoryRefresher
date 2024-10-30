@@ -23,7 +23,7 @@ export default function CardModal() {
 	return (
 		<Modal
 			state='card'
-			className='w-full bg-gradient-to-tr from-fourth from-25% to-third '
+			className='w-full md:w-2/3 bg-gradient-to-tr from-fourth from-25% to-third '
 			onClose={hideModal}
 		>
 			<div className='w-full p-2'>
