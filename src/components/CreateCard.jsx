@@ -31,7 +31,7 @@ export default function CreateCard() {
 				<Input register={register} label='Card Title' id='name' />
 				<Input register={register} select label='Language' id='language' />
 				<Input register={register} textArea label='Code' id='code' />
-				<div className='flex justify-evenly  p-1'>
+				<div className='flex justify-evenly p-1'>
 					<Button textOnly type='button' onClick={handleClose} className='w-56'>
 						Close
 					</Button>
