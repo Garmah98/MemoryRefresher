@@ -1,9 +1,11 @@
-import { useRef, useEffect, useContext } from 'react'
+import { useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import { ProgressContext } from '../context/ProgressContext'
+import { useSelector } from 'react-redux'
 
 export default function Modal({ children, state, onClose, className }) {
-    const { progress } = useContext(ProgressContext)
+
+    const progress = useSelector((state) => state.progress.progress)
+    
     const dialog = useRef()
     useEffect(() => {
         const modal = dialog.current

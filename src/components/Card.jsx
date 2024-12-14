@@ -1,13 +1,20 @@
-import { useContext } from 'react'
-import { ProgressContext } from '../context/ProgressContext'
-import { CardContext } from '../context/CardContext'
+import { progressActions } from '../store/ProgressSlice'
+import { cardsActions } from '../store/CardsSlice'
+import { useDispatch } from 'react-redux'
 
 export default function Card({ title, language, id }) {
-    const { showModal } = useContext(ProgressContext)
-    const { handleSelectItem } = useContext(CardContext)
+    const dispatch = useDispatch()
+
+    function showModal() {
+        dispatch(progressActions.showModal())
+    }
+    function handleSelectItem() {
+        dispatch(cardsActions.select(id))
+    }
+
     function handleButton() {
         showModal()
-        handleSelectItem(id)
+        handleSelectItem()
     }
     return (
         <div className="h-32 w-full rounded-lg bg-gradient-to-tr from-fourth to-third shadow-2xl md:h-64 lg:h-44">

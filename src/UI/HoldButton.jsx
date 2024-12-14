@@ -1,17 +1,24 @@
 import { useRef, useState } from 'react'
-import { useContext } from 'react'
-import { CardContext } from '../context/CardContext'
-import { ProgressContext } from '../context/ProgressContext'
+
+import { cardsActions } from '../store/CardsSlice'
+import { progressActions } from '../store/ProgressSlice'
+import { useDispatch } from 'react-redux'
 
 const DELAY = 2000
 
 export default function HoldButton({ children, className, ...props }) {
+    const dispatch = useDispatch()
+
     const [progress, setProgress] = useState(0)
-    const { removeCard } = useContext(CardContext)
-    const { hideModal } = useContext(ProgressContext)
     const startTime = useRef(null)
     const holdRef = useRef(null)
 
+    function removeCard() {
+        dispatch(cardsActions.remove())
+    }
+    function hideModal() {
+        dispatch(progressActions.hideModal())
+    }
     function handleRemove() {
         removeCard()
         hideModal()

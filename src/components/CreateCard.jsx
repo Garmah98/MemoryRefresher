@@ -2,14 +2,23 @@ import Modal from './Modal'
 import Input from '../UI/Input'
 import Button from '../UI/Button'
 import { useForm } from 'react-hook-form'
-import { useContext } from 'react'
-import { CardContext } from '../context/CardContext'
-import { ProgressContext } from '../context/ProgressContext'
+
+import { cardsActions } from '../store/CardsSlice'
+import { progressActions } from '../store/ProgressSlice'
+import { useDispatch } from 'react-redux'
 
 export default function CreateCard() {
     const { register, handleSubmit, reset } = useForm()
-    const { addCard } = useContext(CardContext)
-    const { hideModal } = useContext(ProgressContext)
+
+    const dispatch = useDispatch()
+
+    function addCard(data) {
+        dispatch(cardsActions.add(data))
+    }
+
+    function hideModal() {
+        dispatch(progressActions.hideModal())
+    }
 
     function handleClose() {
         reset()

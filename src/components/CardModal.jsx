@@ -1,6 +1,4 @@
-import { useEffect, useContext } from 'react'
-import { CardContext } from '../context/CardContext'
-import { ProgressContext } from '../context/ProgressContext'
+import { useEffect } from 'react'
 import Prism from 'prismjs'
 import 'prismjs/themes/prism-tomorrow.min.css'
 import 'prismjs/components/prism-jsx'
@@ -10,14 +8,20 @@ import Modal from './Modal'
 import Button from '../UI/Button'
 import HoldButton from '../UI/HoldButton'
 
+import { progressActions } from '../store/ProgressSlice'
+import { useDispatch, useSelector } from 'react-redux'
+
 export default function CardModal() {
-    const { selectedItem } = useContext(CardContext)
-    const { hideModal } = useContext(ProgressContext)
+    const dispatch = useDispatch()
+    const selectedItem = useSelector((state) => state.cards.selectedItem)
+    function hideModal() {
+        dispatch(progressActions.hideModal())
+    }
 
     useEffect(() => {
         Prism.highlightAll()
     })
-
+  
     return (
         <Modal
             state="card"
