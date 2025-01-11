@@ -45,7 +45,7 @@ export default function HoldButton({ children, className, ...props }) {
         }
     }
 
-    let stylingClasses = `m-1 p-2 text-first text-lg font-semibold border border-third rounded-md shadow-md hover:scale-95 bg-gradient-to-r from-black/15 to-black/15 bg-no-repeat `
+    let stylingClasses = `m-1 p-2 text-first text-lg font-semibold border border-third rounded-md shadow-md hover:scale-95 bg-gradient-to-r from-black/15 to-black/15 bg-no-repeat select-none `
     stylingClasses += className
 
     return (
