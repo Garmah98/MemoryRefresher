@@ -53,6 +53,9 @@ export default function HoldButton({ children, className, ...props }) {
             onMouseDown={startTimer}
             onMouseUp={stopTimer}
             onMouseLeave={stopTimer}
+            onTouchStart={startTimer}
+            onTouchEnd={stopTimer}
+            onContextMenu={(e) => e.preventDefault()}
             {...props}
             className={stylingClasses}
             style={{ backgroundSize: `${progress}%` }}
