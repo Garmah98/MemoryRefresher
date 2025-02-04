@@ -1,9 +1,15 @@
 import { progressActions } from '../store/ProgressSlice'
 import { cardsActions } from '../store/CardsSlice'
-import { useDispatch } from 'react-redux'
+import { useCardsDispatch } from '../store/hooks'
 
-export default function Card({ title, language, id }) {
-    const dispatch = useDispatch()
+type CardProps = {
+    title: string
+    language: string
+    id: number,
+}
+
+export default function Card({ title, language, id }: CardProps) {
+    const dispatch = useCardsDispatch()
 
     function showModal() {
         dispatch(progressActions.showModal())
@@ -16,6 +22,7 @@ export default function Card({ title, language, id }) {
         showModal()
         handleSelectItem()
     }
+    const selectedLanguage = language.toUpperCase()
     return (
         <div className="h-32 w-full rounded-lg bg-gradient-to-tr from-fourth to-third shadow-2xl md:h-64 lg:h-44">
             <button
@@ -24,7 +31,7 @@ export default function Card({ title, language, id }) {
             >
                 <h2 className="text-2xl">{title}</h2>
                 <p className="absolute bottom-2 right-2 text-xl text-stone-800">
-                    {language}
+                    {selectedLanguage}
                 </p>
             </button>
         </div>

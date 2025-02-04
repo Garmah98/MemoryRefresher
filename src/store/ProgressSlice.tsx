@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+type progressState = {
+    progress: string
+}
+
+const initialState: progressState = {
     progress: '',
 }
 

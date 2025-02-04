@@ -9,11 +9,11 @@ import Button from '../UI/Button'
 import HoldButton from '../UI/HoldButton'
 
 import { progressActions } from '../store/ProgressSlice'
-import { useDispatch, useSelector } from 'react-redux'
+import { useCardsDispatch, useCardsSelector } from '../store/hooks'
 
 export default function CardModal() {
-    const dispatch = useDispatch()
-    const selectedItem = useSelector((state) => state.cards.selectedItem)
+    const dispatch = useCardsDispatch()
+    const selectedItem = useCardsSelector((state) => state.cards.selectedItem!)
     function hideModal() {
         dispatch(progressActions.hideModal())
     }
@@ -21,7 +21,7 @@ export default function CardModal() {
     useEffect(() => {
         Prism.highlightAll()
     })
-  
+
     return (
         <Modal
             state="card"

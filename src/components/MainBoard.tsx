@@ -1,8 +1,8 @@
 import Card from './Card'
-import { useSelector } from 'react-redux'
+import { useCardsSelector } from '../store/hooks'
 
 export default function MainBoard() {
-    const items = useSelector((state) => state.cards.items)
+    const items = useCardsSelector((state) => state.cards.items)
 
     return (
         <main>

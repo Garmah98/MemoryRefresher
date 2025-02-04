@@ -1,4 +1,17 @@
-export default function Button({ children, className, textOnly, ...props }) {
+import { ComponentPropsWithoutRef, type ReactNode } from 'react'
+
+export type ButtonProps = {
+    children: ReactNode,
+    className: string,
+    textOnly?: boolean,
+} & ComponentPropsWithoutRef<'button'>
+
+export default function Button({
+    children,
+    className,
+    textOnly,
+    ...props
+}: ButtonProps) {
     let stylingClasses =
         'p-2 rounded-md text-first text-lg bg-third shadow-md font-semibold hover:scale-95 '
     stylingClasses += className

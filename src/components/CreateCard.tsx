@@ -2,18 +2,31 @@ import Modal from './Modal'
 import Input from '../UI/Input'
 import Button from '../UI/Button'
 import { useForm } from 'react-hook-form'
-
 import { cardsActions } from '../store/CardsSlice'
 import { progressActions } from '../store/ProgressSlice'
-import { useDispatch } from 'react-redux'
+import { useCardsDispatch } from '../store/hooks'
+
+type FormData = {
+    id: number
+    name: string
+    language: string
+    code: string
+}
 
 export default function CreateCard() {
-    const { register, handleSubmit, reset } = useForm()
+    const { register, handleSubmit, reset } = useForm<FormData>()
 
-    const dispatch = useDispatch()
+    const dispatch = useCardsDispatch()
 
-    function addCard(data) {
-        dispatch(cardsActions.add(data))
+    function addCard(data: FormData) {
+        dispatch(
+            cardsActions.add({
+                id: Math.random(),
+                name: data.name,
+                language: data.language,
+                code: data.code,
+            })
+        )
     }
 
     function hideModal() {
@@ -25,7 +38,7 @@ export default function CreateCard() {
         hideModal()
     }
 
-    function onSubmit(data) {
+    function onSubmit(data: FormData) {
         addCard(data)
         handleClose()
     }
@@ -40,14 +53,29 @@ export default function CreateCard() {
                 className="flex flex-col p-2"
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <Input register={register} label="Card Title" id="name" />
                 <Input
-                    register={register}
+                    register={register('name', {
+                        required: 'Please provide name of your card',
+                    })}
+                    label="Card Title"
+                    id="name"
+                />
+                <Input
+                    register={register('language', {
+                        required: 'Please select language of your code',
+                    })}
                     select
                     label="Language"
                     id="language"
                 />
-                <Input register={register} textArea label="Code" id="code" />
+                <Input
+                    register={register('code', {
+                        required: 'Please provide your code',
+                    })}
+                    textArea
+                    label="Code"
+                    id="code"
+                />
                 <div className="flex justify-evenly p-1">
                     <Button
                         textOnly

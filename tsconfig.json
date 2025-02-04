@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "allowJs": true, // Allow JavaScript files to be compiled
+        "allowImportingTsExtensions": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true, // Enable all strict type-checking options
+        "forceConsistentCasingInFileNames": true,
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true, // Vite handles the build, so no need to emit JS files
+        "jsx": "react-jsx" // Support for React JSX
+    },
+    "include": ["src"], // Include files in the src directory
+    "exclude": ["node_modules"]
+}

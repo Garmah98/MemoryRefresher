@@ -1,16 +1,26 @@
+import { ComponentPropsWithoutRef, type ReactNode } from 'react'
+import { UseFormRegisterReturn } from 'react-hook-form'
+
+type InputProps = {
+    label: string
+    id: string
+    textArea?: boolean
+    select?: boolean
+    register: UseFormRegisterReturn
+} & ComponentPropsWithoutRef<'input'>
+
 export default function Input({
     label,
     id,
     textArea,
     select,
     register,
-    required,
-}) {
-    let inputType = ''
+}: InputProps) {
+    let inputType: ReactNode
     if (textArea) {
         inputType = (
             <textarea
-                {...register(id, { required: true })}
+                {...register}
                 id={id}
                 name={id}
                 className="min-h-96 resize-none rounded-md border border-black"
@@ -19,7 +29,7 @@ export default function Input({
     } else if (select) {
         inputType = (
             <select
-                {...register(id, { required: true })}
+                {...register}
                 id={id}
                 name={id}
                 className="w-1/2 border border-black p-2"
@@ -32,12 +42,12 @@ export default function Input({
     } else {
         inputType = (
             <input
-                {...register(id, { required: true })}
+                {...register}
                 className="w-3/4 rounded-md border border-solid border-black p-1"
                 type="text"
                 id={id}
                 name={id}
-                maxLength="86"
+                maxLength={86}
             />
         )
     }

@@ -1,17 +1,21 @@
 import { useRef, useState } from 'react'
-
+import { ButtonProps } from './Button'
 import { cardsActions } from '../store/CardsSlice'
 import { progressActions } from '../store/ProgressSlice'
 import { useDispatch } from 'react-redux'
 
 const DELAY = 2000
 
-export default function HoldButton({ children, className, ...props }) {
+export default function HoldButton({
+    children,
+    className,
+    ...props
+}: ButtonProps) {
     const dispatch = useDispatch()
 
     const [progress, setProgress] = useState(0)
-    const startTime = useRef(null)
-    const holdRef = useRef(null)
+    const startTime = useRef<number | null>(null)
+    const holdRef = useRef<number | null>(null)
 
     function removeCard() {
         dispatch(cardsActions.remove())
@@ -28,7 +32,7 @@ export default function HoldButton({ children, className, ...props }) {
         startTime.current = Date.now()
         holdRef.current = setInterval(() => {
             setProgress(
-                Math.floor(((Date.now() - startTime.current) / DELAY) * 100)
+                Math.floor(((Date.now() - startTime.current!) / DELAY) * 100)
             )
             if (startTime.current && Date.now() - startTime.current > DELAY) {
                 handleRemove()

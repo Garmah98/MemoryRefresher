@@ -1,9 +1,9 @@
 import Button from '../UI/Button'
-import { useDispatch } from 'react-redux'
+import { useCardsDispatch } from '../store/hooks'
 import { progressActions } from '../store/ProgressSlice'
 
 export default function Header() {
-    const dispatch = useDispatch()
+    const dispatch = useCardsDispatch()
 
     function handleCreateCard() {
         dispatch(progressActions.createCard())
