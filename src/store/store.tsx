@@ -16,6 +16,13 @@ const persistedReducer = persistReducer(persistConfig, reducers)
 
 const store = configureStore({
     reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: { // persist redux throwing errors without this
+                ignoredPaths: ['register', 'rehydrate'],
+                ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+            },
+        }),
 })
 
 export type AppDispatch = typeof store.dispatch
