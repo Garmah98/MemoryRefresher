@@ -13,7 +13,7 @@ import { useCardsDispatch, useCardsSelector } from '../store/hooks'
 
 export default function CardModal() {
     const dispatch = useCardsDispatch()
-    const selectedItem = useCardsSelector((state) => state.cards.selectedItem!)
+    const selectedItem = useCardsSelector((state) => state.cards.selectedItem)
     function hideModal() {
         dispatch(progressActions.hideModal())
     }
@@ -29,13 +29,13 @@ export default function CardModal() {
             onClose={hideModal}
         >
             <div className="w-full p-2">
-                <h2 className="break-words text-3xl">{selectedItem.name}</h2>
+                <h2 className="break-words text-3xl">{selectedItem?.name}</h2>
                 <p className="text-xl text-stone-300">
-                    {selectedItem.language}
+                    {selectedItem?.language}
                 </p>
                 <pre>
-                    <code className={`language-${selectedItem.language}`}>
-                        {selectedItem.code}
+                    <code className={`language-${selectedItem?.language}`}>
+                        {selectedItem?.code}
                     </code>
                 </pre>
                 <div className="flex justify-evenly">
