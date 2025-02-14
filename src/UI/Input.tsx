@@ -4,6 +4,7 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 type InputProps = {
     label: string
     id: string
+    whiteLabel?: boolean
     textArea?: boolean
     select?: boolean
     register: UseFormRegisterReturn
@@ -11,10 +12,12 @@ type InputProps = {
 
 export default function Input({
     label,
+    whiteLabel,
     id,
     textArea,
     select,
     register,
+    ...props
 }: InputProps) {
     let inputType: ReactNode
     if (textArea) {
@@ -43,8 +46,8 @@ export default function Input({
         inputType = (
             <input
                 {...register}
+                {...props}
                 className="w-3/4 rounded-md border border-solid border-black p-1"
-                type="text"
                 id={id}
                 name={id}
                 maxLength={86}
@@ -53,7 +56,10 @@ export default function Input({
     }
     return (
         <div className="m-2 flex flex-col p-1 text-lg">
-            <label className="mb-2" htmlFor={id}>
+            <label
+                className={whiteLabel ? 'mb-2 text-white' : 'mb-2'}
+                htmlFor={id}
+            >
                 {label}
             </label>
             {inputType}

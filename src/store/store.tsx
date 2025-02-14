@@ -1,28 +1,15 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+import { configureStore } from '@reduxjs/toolkit'
+
 import cardsReducer from './CardsSlice'
 import ProgressReducer from './ProgressSlice'
-
-const reducers = combineReducers({
-    cards: cardsReducer,
-    progress: ProgressReducer,
-})
-const persistConfig = {
-    key: 'root',
-    storage,
-}
-const persistedReducer = persistReducer(persistConfig, reducers)
+import authReducer from './AuthSlice'
 
 const store = configureStore({
-    reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-            serializableCheck: { // persist redux throwing errors without this
-                ignoredPaths: ['register', 'rehydrate'],
-                ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
-            },
-        }),
+    reducer: {
+        cards: cardsReducer,
+        progress: ProgressReducer,
+        auth: authReducer,
+    },
 })
 
 export type AppDispatch = typeof store.dispatch

@@ -6,7 +6,7 @@ type ModalProps = {
     children: ReactNode
     state: string
     onClose: () => void
-    className: string
+    className?: string
 }
 
 export default function Modal({
@@ -18,6 +18,7 @@ export default function Modal({
     const progress = useCardsSelector((state) => state.progress.progress)
 
     const dialog = useRef<HTMLDialogElement | null>(null)
+
     useEffect(() => {
         const modal = dialog.current
         if (state === progress) {

@@ -2,23 +2,42 @@ import Header from './components/Header'
 import MainBoard from './components/MainBoard'
 import CardModal from './components/CardModal'
 import CreateCard from './components/CreateCard'
-import { Provider } from 'react-redux'
-import store from './store/store'
-import { PersistGate } from 'redux-persist/integration/react'
-import persistStore from 'redux-persist/es/persistStore'
+import Auth from './components/Auth'
 
-let persistor = persistStore(store)
+import { useEffect } from 'react'
+import { auth } from './util/firebase'
+import { onAuthStateChanged } from 'firebase/auth'
+import { fetchCardData } from './store/card-Actions'
+import { authActions } from './store/AuthSlice'
+import { useCardsDispatch } from './store/hooks'
+import { cardsActions } from './store/CardsSlice'
 
 function App() {
+    const dispatch = useCardsDispatch()
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                dispatch(authActions.login())
+                dispatch(authActions.setUser(user.uid))
+                dispatch(fetchCardData(user.uid))
+            } else {
+                dispatch(cardsActions.clearCards())
+                dispatch(authActions.logout())
+            }
+        })
+        return () => unsubscribe()
+    }, [dispatch])
+
+
     return (
-        <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-                <CreateCard />
-                <CardModal />
-                <Header />
-                <MainBoard />
-            </PersistGate>
-        </Provider>
+        <>
+            <Auth />
+            <CreateCard />
+            <CardModal />
+            <Header />
+            <MainBoard />
+        </>
     )
 }
 

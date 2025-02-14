@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef, type ReactNode } from 'react'
 
 export type ButtonProps = {
     children: ReactNode,
-    className: string,
+    className?: string,
     textOnly?: boolean,
 } & ComponentPropsWithoutRef<'button'>
 

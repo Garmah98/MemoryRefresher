@@ -1,6 +1,8 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
+import { fetchCardData, removeCardData, sendCardData } from './card-Actions'
+import { CardData } from './card-Actions'
 
-type Card = {
+export type Card = {
     id: number
     name: string
     language: string
@@ -42,6 +44,31 @@ const cardsSlice = createSlice({
             )
             state.items.splice(selectedItemIndex, 1)
         },
+        clearCards(state) {
+            state.items = []
+        },
+    },
+    extraReducers: (builder) => {
+        builder.addCase(
+            fetchCardData.fulfilled,
+            (state, action: PayloadAction<Card[]>) => {
+                state.items = action.payload
+            }
+        )
+        builder.addCase(
+            sendCardData.fulfilled,
+            (state, action: PayloadAction<CardData>) => {
+                state.items = [...state.items, action.payload.data]
+            }
+        )
+        builder.addCase(
+            removeCardData.fulfilled,
+            (state, action: PayloadAction<number>) => {
+                state.items = state.items.filter(
+                    (item) => item.id !== action.payload
+                )
+            }
+        )
     },
 })
 

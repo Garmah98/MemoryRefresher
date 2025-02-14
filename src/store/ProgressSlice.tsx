@@ -18,6 +18,9 @@ const progressSlice = createSlice({
         createCard(state) {
             state.progress = 'create'
         },
+        showAuth(state) {
+            state.progress = 'auth'
+        },
         hideModal(state) {
             state.progress = ''
         },

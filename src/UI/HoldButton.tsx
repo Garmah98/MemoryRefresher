@@ -1,8 +1,8 @@
 import { useRef, useState } from 'react'
 import { ButtonProps } from './Button'
-import { cardsActions } from '../store/CardsSlice'
 import { progressActions } from '../store/ProgressSlice'
-import { useDispatch } from 'react-redux'
+import { removeCardData } from '../store/card-Actions'
+import { useCardsSelector, useCardsDispatch } from '../store/hooks'
 
 const DELAY = 2000
 
@@ -11,14 +11,18 @@ export default function HoldButton({
     className,
     ...props
 }: ButtonProps) {
-    const dispatch = useDispatch()
+    const userId = useCardsSelector((state) => state.auth.userId)
+    const itemId: number | undefined = useCardsSelector(
+        (state) => state.cards.selectedItem?.id
+    )
+    const dispatch = useCardsDispatch()
 
     const [progress, setProgress] = useState(0)
     const startTime = useRef<number | null>(null)
-    const holdRef = useRef<number | null>(null)
+    const holdRef = useRef<NodeJS.Timeout | null>(null)
 
     function removeCard() {
-        dispatch(cardsActions.remove())
+        dispatch(removeCardData({ userId, itemId }))
     }
     function hideModal() {
         dispatch(progressActions.hideModal())

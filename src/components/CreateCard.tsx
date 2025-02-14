@@ -2,31 +2,29 @@ import Modal from './Modal'
 import Input from '../UI/Input'
 import Button from '../UI/Button'
 import { useForm } from 'react-hook-form'
-import { cardsActions } from '../store/CardsSlice'
 import { progressActions } from '../store/ProgressSlice'
 import { useCardsDispatch } from '../store/hooks'
-
-type FormData = {
-    id: number
-    name: string
-    language: string
-    code: string
-}
+import { useCardsSelector } from '../store/hooks'
+import { sendCardData } from '../store/card-Actions'
+import { Card } from '../store/CardsSlice'
 
 export default function CreateCard() {
-    const { register, handleSubmit, reset } = useForm<FormData>()
+    const { register, handleSubmit, reset } = useForm<Card>()
 
     const dispatch = useCardsDispatch()
+    const userId = useCardsSelector((state) => state.auth.userId!)
 
-    function addCard(data: FormData) {
-        dispatch(
-            cardsActions.add({
-                id: Math.random(),
-                name: data.name,
-                language: data.language,
-                code: data.code,
-            })
-        )
+    function addCard(data: Card) {
+        dispatch(sendCardData({ userId, data }))
+        console.log('yea')
+        // dispatch(
+        //     cardsActions.add({
+        //         id: Math.random(),
+        //         name: data.name,
+        //         language: data.language,
+        //         code: data.code,
+        //     })
+        // )
     }
 
     function hideModal() {
@@ -38,8 +36,13 @@ export default function CreateCard() {
         hideModal()
     }
 
-    function onSubmit(data: FormData) {
-        addCard(data)
+    function onSubmit(data: Card) {
+        addCard({
+            id: Math.random(),
+            name: data.name,
+            language: data.language,
+            code: data.code,
+        })
         handleClose()
     }
 
