@@ -5,6 +5,7 @@ type authState = {
     isLoggedIn: boolean
 }
 
+
 const initialState: authState = {
     userId: null,
     isLoggedIn: false,

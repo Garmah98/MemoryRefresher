@@ -47,8 +47,14 @@ export default function Auth() {
                 )
             } catch (error: any) {}
         } else if (!isSigning) {
-            signInWithEmailAndPassword(auth, data.email, data.password)
-            dispatch(authActions.login())
+            try {
+                await signInWithEmailAndPassword(
+                    auth,
+                    data.email,
+                    data.password
+                )
+                dispatch(authActions.login())
+            } catch {}
         }
         handleClose()
     }

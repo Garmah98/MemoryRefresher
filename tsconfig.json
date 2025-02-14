@@ -14,7 +14,8 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true, // Vite handles the build, so no need to emit JS files
-        "jsx": "react-jsx" // Support for React JSX
+        "jsx": "react-jsx", // Support for React JSX
+        "types": ["vite/client"]
     },
     "include": ["src"], // Include files in the src directory
     "exclude": ["node_modules"]

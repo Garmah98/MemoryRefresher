@@ -11,26 +11,38 @@ import {
     orderByChild,
     equalTo,
 } from 'firebase/database'
+
+
 const firebaseConfig = {
-    apiKey: 'AIzaSyB6o42c3tf41MBJrv-XVCkEP17W-9y9ot0',
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
 
-    authDomain: 'memoryrefresher-9a3bc.firebaseapp.com',
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
 
-    databaseURL:
-        'https://memoryrefresher-9a3bc-default-rtdb.europe-west1.firebasedatabase.app',
+    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
 
-    projectId: 'memoryrefresher-9a3bc',
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
 
-    storageBucket: 'memoryrefresher-9a3bc.firebasestorage.app',
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
 
-    messagingSenderId: '766793804184',
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
 
-    appId: '1:766793804184:web:3a1f7087734b3ed56623ed',
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
 
-    measurementId: 'G-VZKYVHDW91',
+    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 }
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const database = getDatabase(app)
 
-export { auth, database, ref, set, get, push, remove, query,orderByChild,equalTo }
+export {
+    auth,
+    database,
+    ref,
+    set,
+    get,
+    push,
+    remove,
+    query,
+    orderByChild,
+    equalTo,
+}
