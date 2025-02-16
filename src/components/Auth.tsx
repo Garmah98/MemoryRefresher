@@ -87,7 +87,7 @@ export default function Auth() {
                     />
                     <Input
                         whiteLabel
-                        error={errors.email && true}
+                        error={errors.email}
                         autoComplete="off"
                         label="Email"
                         id="email"
@@ -106,7 +106,7 @@ export default function Auth() {
                     />
                     <Input
                         whiteLabel
-                        error={errors.password && true}
+                        error={errors.password}
                         type="password"
                         label="Password"
                         id="password"
@@ -144,6 +144,7 @@ export default function Auth() {
                                 : "Don't have account yet? "}
                             <button
                                 className="underline"
+                                type='button'
                                 onClick={handleSignUp}
                             >
                                 {isSigning ? 'Login here' : 'Sign up here'}

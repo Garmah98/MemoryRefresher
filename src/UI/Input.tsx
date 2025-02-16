@@ -1,10 +1,10 @@
 import { ComponentPropsWithoutRef, type ReactNode } from 'react'
-import { UseFormRegisterReturn } from 'react-hook-form'
+import { FieldError, UseFormRegisterReturn } from 'react-hook-form'
 
 type InputProps = {
     label: string
     id: string
-    error?: boolean
+    error?: FieldError
     whiteLabel?: boolean
     textArea?: boolean
     select?: boolean
@@ -45,7 +45,6 @@ export default function Input({
             </select>
         )
     } else {
-        
         inputType = (
             <input
                 {...register}
