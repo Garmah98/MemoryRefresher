@@ -9,6 +9,7 @@ import { authActions } from '../store/AuthSlice'
 export default function Header() {
     const isLoggedIn = useCardsSelector((state) => state.auth.isLoggedIn)
     const dispatch = useCardsDispatch()
+  
 
     function handleCreateCard() {
         dispatch(progressActions.createCard())
@@ -25,7 +26,9 @@ export default function Header() {
     }
     return (
         <header className="flex w-full justify-between bg-first p-3">
-            <h1 className="mr-1 text-3xl text-third">MemoryRefresher</h1>
+            <h1 className="mr-1 flex items-center text-3xl text-third">
+                MemoryRefresher
+            </h1>
             <div>
                 {isLoggedIn && (
                     <Button className="w-32" onClick={handleCreateCard}>
