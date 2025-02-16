@@ -9,6 +9,7 @@ import { auth } from '../util/firebase'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { authActions } from '../store/AuthSlice'
+import { ErrorMessage } from '@hookform/error-message'
 
 type AuthData = {
     email: string
@@ -18,7 +19,12 @@ type AuthData = {
 
 export default function Auth() {
     const [isSigning, setIsSigning] = useState(false)
-    const { register, handleSubmit, reset } = useForm<AuthData>()
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<AuthData>()
     const dispatch = useCardsDispatch()
 
     function hideModal() {
@@ -58,6 +64,7 @@ export default function Auth() {
         }
         handleClose()
     }
+
     return (
         <>
             <Modal
@@ -69,8 +76,18 @@ export default function Auth() {
                     onSubmit={handleSubmit(onSubmit)}
                     className="relative h-full"
                 >
+                    <ErrorMessage
+                        errors={errors}
+                        name="email"
+                        render={({ message }) => (
+                            <span className="text-error absolute left-1/3">
+                                {message}
+                            </span>
+                        )}
+                    />
                     <Input
                         whiteLabel
+                        error={errors.email && true}
                         autoComplete="off"
                         label="Email"
                         id="email"
@@ -78,8 +95,18 @@ export default function Auth() {
                             required: 'Email is required.',
                         })}
                     />
+                    <ErrorMessage
+                        errors={errors}
+                        name="password"
+                        render={({ message }) => (
+                            <span className="text-error absolute left-1/3">
+                                {message}
+                            </span>
+                        )}
+                    />
                     <Input
                         whiteLabel
+                        error={errors.password && true}
                         type="password"
                         label="Password"
                         id="password"

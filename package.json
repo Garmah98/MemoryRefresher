@@ -13,6 +13,7 @@
 		"preview": "vite preview"
 	},
 	"dependencies": {
+		"@hookform/error-message": "^2.0.1",
 		"@reduxjs/toolkit": "^2.5.0",
 		"firebase": "^11.2.0",
 		"prismjs": "^1.29.0",

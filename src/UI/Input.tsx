@@ -4,6 +4,7 @@ import { UseFormRegisterReturn } from 'react-hook-form'
 type InputProps = {
     label: string
     id: string
+    error?: boolean
     whiteLabel?: boolean
     textArea?: boolean
     select?: boolean
@@ -14,6 +15,7 @@ export default function Input({
     label,
     whiteLabel,
     id,
+    error,
     textArea,
     select,
     register,
@@ -43,11 +45,12 @@ export default function Input({
             </select>
         )
     } else {
+        
         inputType = (
             <input
                 {...register}
                 {...props}
-                className="w-3/4 rounded-md border border-solid border-black p-1"
+                className={`w-3/4 rounded-md border border-solid border-${error ? 'error' : 'black'} p-1`}
                 id={id}
                 name={id}
                 maxLength={86}
