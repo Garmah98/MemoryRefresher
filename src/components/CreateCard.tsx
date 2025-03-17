@@ -16,24 +16,11 @@ export default function CreateCard() {
 
     function addCard(data: Card) {
         dispatch(sendCardData({ userId, data }))
-        console.log('yea')
-        // dispatch(
-        //     cardsActions.add({
-        //         id: Math.random(),
-        //         name: data.name,
-        //         language: data.language,
-        //         code: data.code,
-        //     })
-        // )
-    }
-
-    function hideModal() {
-        dispatch(progressActions.hideModal())
     }
 
     function handleClose() {
         reset()
-        hideModal()
+        dispatch(progressActions.hideModal())
     }
 
     function onSubmit(data: Card) {
