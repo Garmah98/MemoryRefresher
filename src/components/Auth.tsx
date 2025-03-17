@@ -62,7 +62,7 @@ export default function Auth() {
                 dispatch(authActions.login())
             } catch {}
         }
-        handleClose()
+        // handleClose()
     }
 
     return (
@@ -80,7 +80,7 @@ export default function Auth() {
                         errors={errors}
                         name="email"
                         render={({ message }) => (
-                            <span className="text-error absolute left-1/3">
+                            <span className="absolute left-1/3 text-error">
                                 {message}
                             </span>
                         )}
@@ -99,7 +99,7 @@ export default function Auth() {
                         errors={errors}
                         name="password"
                         render={({ message }) => (
-                            <span className="text-error absolute left-1/3">
+                            <span className="absolute left-1/3 text-error">
                                 {message}
                             </span>
                         )}
@@ -115,15 +115,27 @@ export default function Auth() {
                         })}
                     />
                     {isSigning && (
-                        <Input
-                            whiteLabel
-                            type="password"
-                            label="Confirm Password"
-                            id="matchingPassword"
-                            register={register('matchingPassword', {
-                                required: 'Confirming password is required',
-                            })}
-                        />
+                        <>
+                            <ErrorMessage
+                                errors={errors}
+                                name="matchingPassword"
+                                render={({ message }) => (
+                                    <span className="absolute left-1/3 text-error">
+                                        {message}
+                                    </span>
+                                )}
+                            />
+                            <Input
+                                whiteLabel
+                                error={errors.matchingPassword}
+                                type="password"
+                                label="Confirm Password"
+                                id="matchingPassword"
+                                register={register('matchingPassword', {
+                                    required: 'Confirming password is required',
+                                })}
+                            />
+                        </>
                     )}
                     <div className="absolute bottom-4 flex w-full flex-col">
                         <div className="flex flex-col items-center lg:flex-row lg:justify-evenly">
@@ -144,7 +156,7 @@ export default function Auth() {
                                 : "Don't have account yet? "}
                             <button
                                 className="underline"
-                                type='button'
+                                type="button"
                                 onClick={handleSignUp}
                             >
                                 {isSigning ? 'Login here' : 'Sign up here'}
