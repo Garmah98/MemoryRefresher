@@ -62,7 +62,7 @@ export default function Auth() {
                 dispatch(authActions.login())
             } catch {}
         }
-        // handleClose()
+        handleClose()
     }
 
     return (
